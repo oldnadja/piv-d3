@@ -1,0 +1,15 @@
+
+main.js
+----------------
+jquery.js
+angular.js
+angular-route.js
+angular-strap.js
+angular-strap-tpl.js
+bootstrap.js
+underscore-mixins.js
+config/config-angular.js
+modules/app/module.js
+modules/app/index.js
+config/config-modules.js
+main.js
