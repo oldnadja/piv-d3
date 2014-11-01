@@ -10,17 +10,12 @@ require.config({
         'bootstrap': '../vendors/bootstrap/bootstrap',
 
         'angular-strap': '../vendors/angular-strap/angular-strap',
-        'angular-strap-tpl': '../vendors/angular-strap/angular-strap.tpl',
 
         'jquery': '../vendors/jquery/jquery',
 
         'underscore': '../vendors/underscore/underscore',
-        'underscore-mixins': '../vendors/underscore/underscore-mixins',
 
-        'config-angular': '../app/config/config-angular',
-        'config-modules': '../app/config/config-modules',
-
-        'module-app': '../app/modules/app/index'
+        'app': '../app/modules/app'
     },
 
     shim: {
@@ -32,9 +27,6 @@ require.config({
             deps: ['angular']
         },
         'angular-ui-router': {
-            deps: ['angular']
-        },
-        'angular-locale_ru-ru': {
             deps: ['angular']
         },
         'angular-resource': {
@@ -51,9 +43,6 @@ require.config({
         },
         'jquery-ui-custom': {
             deps: ['jquery']
-        },
-        'dialogs': {
-            deps: ['angular']
         }
     }
 });
