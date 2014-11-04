@@ -1,16 +1,15 @@
 piv-d3
 ======
 
-This is a programm for my PhD in MPEI.
+This is a frontend part of the programm for calculations in my PhD in MPEI.
 
 My steps:
 <ol>
   <li>Create frontend part structure +</li>
   <li>Add d3.js to frontend +</li>
   <li>Construct json data file for vectors +</li>
-  <li>Using d3.js and json data file create field of vectors</li>
-  <li>Construct math-calculate to create vector field from illumination matrix </li>
-  <li>Construct json file from illumination matrix</li>
+  <li>Using d3.js and json data file create field of vectors+</li>
+  <li>Add backend part of calculation (?) references</li>
   <li>Tests programm using test data</li>
   <li>*optional. Add scale change (change size and details of field)</li>
 </ol>
