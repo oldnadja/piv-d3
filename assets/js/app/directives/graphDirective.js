@@ -10,17 +10,27 @@ Graph.prototype.initialize = function(){
 // Compute the distinct nodes from the links.
     links.forEach(function(link) {
         link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+        link.source.x = link.coords.source[0];
+        link.source.y = link.coords.source[1];
         link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+        link.target.x = link.coords.target[0];
+        link.target.y = link.coords.target[1];
     });
 
     var width = 960,
         height = 500;
 
+    var drag = d3.behavior.drag()
+        .origin(function(d) { return d; })
+        .on("drag", function(){
+            return false;
+        });
+
     var force = d3.layout.force()
         .nodes(d3.values(nodes))
         .links(links)
         .size([width, height])
-        .linkDistance(60)
+        //.linkDistance(60)
         .charge(-300)
         .on("tick", tick)
         .start();
@@ -36,7 +46,7 @@ Graph.prototype.initialize = function(){
         .attr("id", function(d) { return d; })
         .attr("viewBox", "0 -5 10 10")
         .attr("refX", 15)
-        .attr("refY", -1.5)
+        .attr("refY", 0)
         .attr("markerWidth", 6)
         .attr("markerHeight", 6)
         .attr("orient", "auto")
@@ -46,7 +56,6 @@ Graph.prototype.initialize = function(){
     var path = svg.append("g").selectAll("path")
         .data(force.links())
         .enter().append("path")
-        .attr("d", '0')
         .attr("class", function(d) { return "link " + d.type; })
         .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
 
@@ -54,27 +63,27 @@ Graph.prototype.initialize = function(){
         .data(force.nodes())
         .enter().append("circle")
         .attr("r", 3)
-        .call(force.drag);
-
-    var text = svg.append("g").selectAll("text")
-        .data(force.nodes())
-        .enter().append("text")
-        .attr("x", 8)
-        .attr("y", ".31em")
-        .text(function(d) { return d.name; });
-
+        .call(drag);
 
     // Use elliptical arc path segments to doubly-encode directionality.
     function tick() {
-        path.attr("d", linkArc);
+        path
+            .attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; })
+            .attr("d", linkArc)
+            .on('drag', function(d){
+                return false;
+            });
+
         circle.attr("transform", transform);
-        text.attr("transform", transform);
     }
 
     function linkArc(d) {
         var dx = d.target.x - d.source.x,
             dy = d.target.y - d.source.y,
-            dr = Math.sqrt(dx * dx + dy * dy);
+            dr = 0; //Math.sqrt(dx * dx + dy * dy);
         return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
     }
 

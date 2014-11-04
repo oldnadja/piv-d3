@@ -14,8 +14,11 @@ require.config({
         'jquery': '../vendors/jquery/jquery',
 
         'underscore': '../vendors/underscore/underscore',
-
-        'app': '../app/modules/app'
+        'd3' :'../vendors/d3/d3.v3.min',
+        'vectorService': '../app/services/VectorService',
+        'pivController': '../app/controllers/pivController',
+        'graphDirective': '../app/directives/graphDirective',
+        'app': '../app/app'
     },
 
     shim: {

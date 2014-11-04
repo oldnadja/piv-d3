@@ -1,4 +1,16 @@
 
 main.js
 ----------------
+jquery.js
+angular.js
+angular-route.js
+angular-resource.js
+bootstrap.js
+angular-strap.js
+underscore.js
+d3.js
+services/VectorService.js
+controllers/pivController.js
+directives/graphDirective.js
+app.js
 main.js

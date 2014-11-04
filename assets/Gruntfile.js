@@ -89,27 +89,12 @@ module.exports = function (grunt) {
             }
         },
 
-        html2js: {
-            options: {
-                base: './',
-                module: 'templates',
-                htmlmin: {
-                    collapseWhitespace: true,
-                    removeComments: true
-                }
-            },
-            main: {
-                src: ['js/app/**/*.html'],
-                dest: 'build/templates.min.js'
-            }
-        },
-
         concat: {
             options: {
                 separator: ';'
             },
             dist: {
-                src: ['build/main.js', 'build/templates.min.js', 'build/constants.js'],
+                src: ['build/main.js'],
                 dest: 'js/main.min.js'
             }
         }
@@ -119,12 +104,12 @@ module.exports = function (grunt) {
 
     grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
-    grunt.registerTask('build', ['clean', 'requirejs', 'html2js', 'concat']);
+    grunt.registerTask('build', ['clean', 'requirejs', 'concat']);
 
     grunt.registerTask('test', ['karma']);
 
     grunt.registerTask('release:dev', []);
-    grunt.registerTask('release:stage', ['clean', 'less', 'requirejs', 'html2js', 'concat']);
+    grunt.registerTask('release:stage', ['clean', 'less', 'requirejs', 'concat']);
 
     grunt.registerTask('teamcity:release:prod:linux', [
         'clean',

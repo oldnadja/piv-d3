@@ -13,5 +13,5 @@ pivControllers.controller('PivCtrl', ['$scope', 'Vector',
             graph.initialize();
         });
 
-
-    }]);
+    }
+]);
