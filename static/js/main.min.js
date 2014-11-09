@@ -17580,12 +17580,12 @@ var pivApp = angular.module("pivApp", [ "ngRoute", "pivServices", "pivController
 
 pivApp.config([ "$routeProvider", function($routeProvider) {
     $routeProvider.when("/piv", {
-        templateUrl: "assets/js/partials/index.html",
+        templateUrl: "static/js/partials/index.html",
         controller: "PivCtrl"
     }).otherwise({
-        templateUrl: "assets/js/partials/index.html",
+        templateUrl: "static/js/partials/index.html",
         controller: "PivCtrl"
     });
 } ]), define("app", function() {}), define("main", [ "angular", "angular-route", "angular-resource", "bootstrap", "angular-strap", "jquery", "underscore", "d3", "vectorService", "pivController", "graphDirective", "app" ], function() {
-    return main;
+    return function() {};
 });

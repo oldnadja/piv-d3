@@ -17,7 +17,7 @@ require.config({
         'd3' :'../vendors/d3/d3.v3.min',
         'vectorService': '../app/services/VectorService',
         'pivController': '../app/controllers/pivController',
-        'graphDirective': '../app/directives/graphDirective',
+        'graphDirective': '../app/controllers/graphController',
         'app': '../app/app'
     },
 

@@ -11,6 +11,6 @@ underscore.js
 d3.js
 services/VectorService.js
 controllers/pivController.js
-directives/graphDirective.js
+controllers/graphController.js
 app.js
 main.js

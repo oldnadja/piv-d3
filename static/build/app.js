@@ -12,11 +12,11 @@ pivApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/piv', {
-                templateUrl: 'assets/js/partials/index.html',
+                templateUrl: 'static/js/partials/index.html',
                 controller: 'PivCtrl'
             }).
             otherwise({
-                templateUrl: 'assets/js/partials/index.html',
+                templateUrl: 'static/js/partials/index.html',
                 controller: 'PivCtrl'
             });
     }]);
