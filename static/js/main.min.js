@@ -17525,12 +17525,24 @@ pivServices.factory("Vector", [ "$resource", function($resource) {
 
 var pivControllers = angular.module("pivControllers", []);
 
-pivControllers.controller("PivCtrl", [ "$scope", "Vector", function($scope, Vector) {
+pivControllers.controller("PivCtrl", [ "$scope", "$http", "Vector", function($scope, $http, Vector) {
     var vectors = Vector.query();
     vectors.$promise.then(function(result) {
         var graph = new Graph(result);
         graph.initialize();
-    });
+    }), $scope.formUrl = "upload", $scope.formData = {}, $scope.processForm = function() {
+        console.log($scope.formData), $http({
+            method: "POST",
+            url: $scope.formUrl,
+            data: $.param($scope.formData),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).success(function(data) {
+            console.log(data), data.success ? $scope.message = data.message : ($scope.errorName = data.errors.name, 
+            $scope.errorSuperhero = data.errors.superheroAlias);
+        });
+    };
 } ]), define("pivController", function() {}), Graph.prototype.initialize = function() {
     function tick() {
         path.attr("x1", function(d) {
@@ -17574,9 +17586,29 @@ pivControllers.controller("PivCtrl", [ "$scope", "Vector", function($scope, Vect
     }).attr("marker-end", function(d) {
         return "url(#" + d.type + ")";
     }), circle = svg.append("g").selectAll("circle").data(force.nodes()).enter().append("circle").attr("r", 3).call(drag);
-}, define("graphDirective", function() {});
+}, define("graphController", function() {});
 
-var pivApp = angular.module("pivApp", [ "ngRoute", "pivServices", "pivControllers" ]);
+var pivDirectives = angular.module("pivDirectives", []);
+
+pivDirectives.directive("fileread", [ function() {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function(scope, element) {
+            element.bind("change", function(changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function(loadEvent) {
+                    scope.$apply(function() {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                }, reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    };
+} ]), define("filereadDirective", function() {});
+
+var pivApp = angular.module("pivApp", [ "ngRoute", "pivServices", "pivControllers", "pivDirectives" ]);
 
 pivApp.config([ "$routeProvider", function($routeProvider) {
     $routeProvider.when("/piv", {
@@ -17586,6 +17618,6 @@ pivApp.config([ "$routeProvider", function($routeProvider) {
         templateUrl: "static/js/partials/index.html",
         controller: "PivCtrl"
     });
-} ]), define("app", function() {}), define("main", [ "angular", "angular-route", "angular-resource", "bootstrap", "angular-strap", "jquery", "underscore", "d3", "vectorService", "pivController", "graphDirective", "app" ], function() {
+} ]), define("app", function() {}), define("main", [ "angular", "angular-route", "angular-resource", "bootstrap", "angular-strap", "jquery", "underscore", "d3", "vectorService", "pivController", "graphController", "filereadDirective", "app" ], function() {
     return function() {};
 });

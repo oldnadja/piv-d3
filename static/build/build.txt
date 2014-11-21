@@ -12,5 +12,6 @@ d3.js
 services/VectorService.js
 controllers/pivController.js
 controllers/graphController.js
+directives/FileReadDirective.js
 app.js
 main.js

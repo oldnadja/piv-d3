@@ -5,7 +5,8 @@
 var pivApp = angular.module('pivApp', [
     'ngRoute',
     'pivServices',
-    'pivControllers'
+    'pivControllers',
+    'pivDirectives'
 ]);
 
 pivApp.config(['$routeProvider',
