@@ -17,7 +17,8 @@ require.config({
         'd3' :'../vendors/d3/d3.v3.min',
         'vectorService': '../app/services/VectorService',
         'pivController': '../app/controllers/pivController',
-        'graphDirective': '../app/controllers/graphController',
+        'graphController': '../app/controllers/graphController',
+        'filereadDirective': '../app/directives/FileReadDirective',
         'app': '../app/app'
     },
 

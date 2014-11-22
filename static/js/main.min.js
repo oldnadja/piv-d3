@@ -17514,13 +17514,7 @@ function(window, angular, undefined) {
 var pivServices = angular.module("pivServices", [ "ngResource" ]);
 
 pivServices.factory("Vector", [ "$resource", function($resource) {
-    return $resource("api/json/vectors.json", {}, {
-        query: {
-            method: "GET",
-            params: {},
-            isArray: !0
-        }
-    });
+    return $resource("api/vectors/").get();
 } ]), define("vectorService", function() {});
 
 var pivControllers = angular.module("pivControllers", []);
@@ -17528,7 +17522,8 @@ var pivControllers = angular.module("pivControllers", []);
 pivControllers.controller("PivCtrl", [ "$scope", "$http", "Vector", function($scope, $http, Vector) {
     var vectors = Vector.query();
     vectors.$promise.then(function(result) {
-        var graph = new Graph(result);
+        console.log(result);
+        var graph = new Graph(result.vectors);
         graph.initialize();
     }), $scope.formUrl = "upload", $scope.formData = {}, $scope.processForm = function() {
         console.log($scope.formData), $http({

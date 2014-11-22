@@ -2,14 +2,19 @@
         <h4>
             Data
         </h4>
-        <p>
-            <textarea class="data-textarea gray-border"></textarea>
-        </p>
-        <p class="center-block">
-            <button class="btn btn-default">
-                Calculate
-            </button>
-        </p>
+        <ng-form action="upload" class="ng-pristine ng-valid">
+            <p>
+                <label>Image 1</label><input type="file" name="image_1" fileread="formData.image_1" class="ng-isolate-scope">
+            </p>
+            <p>
+                <label>Image 2</label><input type="file" name="image_2" fileread="formData.image_2" class="ng-isolate-scope">
+            </p>
+            <p class="center-block">
+                <button class="btn btn-default" ng-click="processForm()">
+                    Calculate
+                </button>
+            </p>
+        </ng-form>
 </aside>
 <article class="col-sm-8">
         <h4>

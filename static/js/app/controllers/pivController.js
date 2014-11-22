@@ -9,7 +9,7 @@ pivControllers.controller('PivCtrl', ['$scope', '$http', 'Vector',
         var vectors = Vector.query();
 
         vectors.$promise.then(function (result) {
-            var graph = new Graph(result);
+            var graph = new Graph(result.vectors);
             graph.initialize();
         });
 

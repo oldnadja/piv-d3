@@ -9,7 +9,8 @@ define('main', [
         'd3',
         'vectorService',
         'pivController',
-        'graphDirective',
+        'graphController',
+        'filereadDirective',
         'app'
     ],
 
