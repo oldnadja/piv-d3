@@ -6,13 +6,13 @@ var pivControllers = angular.module('pivControllers', []);
 
 pivControllers.controller('PivCtrl', ['$scope', '$http', 'Vector',
     function($scope, $http, Vector) {
-        var vectors = Vector.query();
-
-        vectors.$promise.then(function (result) {
-            var graph = new Graph(result.vectors);
-            graph.initialize();
-        });
-
+		Vector.$promise.then(function(result){
+			console.log(result);
+			var vectors = Vector.vectors;
+			var graph = new Graph(vectors);
+			graph.initialize();
+		});
+        
         $scope.formUrl = 'upload';
         $scope.formData = {};
 

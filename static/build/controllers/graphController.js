@@ -20,6 +20,12 @@ Graph.prototype.initialize = function(){
     var width = 960,
         height = 500;
 
+	
+	var lineFunction = d3.svg.line()
+                       .x(function(d) { console.log(d); return d.x; })
+                       .y(function(d) { return d.y; })
+                       .interpolate("linear");
+		
     var drag = d3.behavior.drag()
         .origin(function(d) { return d; })
         .on("drag", function(){
@@ -51,7 +57,13 @@ Graph.prototype.initialize = function(){
         .attr("markerHeight", 6)
         .attr("orient", "auto")
         .append("path")
-        .attr("d", "M0,-5L10,0L0,5");
+        .attr("d", "M0,-5L10,0L0,5")
+		
+		.append("path")
+        /*.attr("d", lineFunction(links))
+        .attr("stroke", "blue")
+        .attr("stroke-width", 2)
+        .attr("fill", "none")*/;
 
     var path = svg.append("g").selectAll("path")
         .data(force.links())
@@ -83,7 +95,7 @@ Graph.prototype.initialize = function(){
     function linkArc(d) {
         var dx = d.target.x - d.source.x,
             dy = d.target.y - d.source.y,
-            dr = 0; //Math.sqrt(dx * dx + dy * dy);
+            dr = Math.sqrt(dx * dx + dy * dy);
         return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
     }
 

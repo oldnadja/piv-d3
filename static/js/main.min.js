@@ -17520,10 +17520,9 @@ pivServices.factory("Vector", [ "$resource", function($resource) {
 var pivControllers = angular.module("pivControllers", []);
 
 pivControllers.controller("PivCtrl", [ "$scope", "$http", "Vector", function($scope, $http, Vector) {
-    var vectors = Vector.query();
-    vectors.$promise.then(function(result) {
+    Vector.$promise.then(function(result) {
         console.log(result);
-        var graph = new Graph(result.vectors);
+        var vectors = Vector.vectors, graph = new Graph(vectors);
         graph.initialize();
     }), $scope.formUrl = "upload", $scope.formData = {}, $scope.processForm = function() {
         console.log($scope.formData), $http({
@@ -17553,7 +17552,7 @@ pivControllers.controller("PivCtrl", [ "$scope", "$http", "Vector", function($sc
         }), circle.attr("transform", transform);
     }
     function linkArc(d) {
-        var dr = (d.target.x - d.source.x, d.target.y - d.source.y, 0);
+        var dx = d.target.x - d.source.x, dy = d.target.y - d.source.y, dr = Math.sqrt(dx * dx + dy * dy);
         return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
     }
     function transform(d) {
@@ -17568,14 +17567,18 @@ pivControllers.controller("PivCtrl", [ "$scope", "$http", "Vector", function($sc
             name: link.target
         }), link.target.x = link.coords.target[0], link.target.y = link.coords.target[1];
     });
-    var width = 960, height = 500, drag = d3.behavior.drag().origin(function(d) {
+    var width = 960, height = 500, drag = (d3.svg.line().x(function(d) {
+        return console.log(d), d.x;
+    }).y(function(d) {
+        return d.y;
+    }).interpolate("linear"), d3.behavior.drag().origin(function(d) {
         return d;
     }).on("drag", function() {
         return !1;
-    }), force = d3.layout.force().nodes(d3.values(nodes)).links(links).size([ width, height ]).charge(-300).on("tick", tick).start(), svg = d3.select(".field").append("svg").attr("width", width).attr("height", height);
+    })), force = d3.layout.force().nodes(d3.values(nodes)).links(links).size([ width, height ]).charge(-300).on("tick", tick).start(), svg = d3.select(".field").append("svg").attr("width", width).attr("height", height);
     svg.append("defs").selectAll("marker").data([ "arrow" ]).enter().append("marker").attr("id", function(d) {
         return d;
-    }).attr("viewBox", "0 -5 10 10").attr("refX", 15).attr("refY", 0).attr("markerWidth", 6).attr("markerHeight", 6).attr("orient", "auto").append("path").attr("d", "M0,-5L10,0L0,5");
+    }).attr("viewBox", "0 -5 10 10").attr("refX", 15).attr("refY", 0).attr("markerWidth", 6).attr("markerHeight", 6).attr("orient", "auto").append("path").attr("d", "M0,-5L10,0L0,5").append("path");
     var path = svg.append("g").selectAll("path").data(force.links()).enter().append("path").attr("class", function(d) {
         return "link " + d.type;
     }).attr("marker-end", function(d) {
