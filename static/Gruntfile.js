@@ -31,32 +31,6 @@ module.exports = function (grunt) {
             }
         },
 
-        karma: {
-            unit: {
-                configFile: 'js/test/karma.conf.js',
-                singleRun: true
-            }
-        },
-
-        protractor: {
-            options: {
-                configFile: "js/test/protractor.conf.js", // Default config file
-                keepAlive: true, // If false, the grunt process stops when the test fails.
-                noColor: false, // If true, protractor will not use colors in its output.
-                args: {
-                    // Arguments passed to the command
-                }
-            },
-            e2e: {
-                options: {
-                    configFile: "build/protractor-e2e.conf.js", // Target-specific config file
-                    args: {
-                        baseUrl: 'http://localhost:8100'
-                    }
-                }
-            }
-        },
-
         clean: {
             build: ['build']
         },
@@ -106,29 +80,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', ['clean', 'requirejs', 'concat']);
 
-    grunt.registerTask('test', ['karma']);
-
-    grunt.registerTask('release:dev', []);
-    grunt.registerTask('release:stage', ['clean', 'less', 'requirejs', 'concat']);
-
-    grunt.registerTask('teamcity:release:prod:linux', [
-        'clean',
-        'less',
-        'requirejs',
-        'html2js',
-        'concat'
-    ]);
-
-
-    grunt.registerTask('create-version', function() {
-
-        var versionObject = {
-            name: taskConfig.pkg.name,
-            version: taskConfig.pkg.version
-        };
-
-        grunt.file.write('version.json', JSON.stringify(versionObject));
-    });
 
 
 };

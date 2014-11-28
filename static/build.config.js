@@ -2,7 +2,7 @@ module.exports = {
 
     dirs: {
         base:   'js',
-        app:    'js/app',
+        app:    'js/modules',
         images: 'js/images',
         less:   'js/less',
         fonts:  'js/fonts',
@@ -12,13 +12,13 @@ module.exports = {
 
     app_files: {
         js: [
-            'js/app/**/*.js',
-            '!js/app/**/*.spec.js'
+            'js/modules/**/*.js',
+            '!js/modules/**/*.spec.js'
         ],
         less: 'less/main.less'
     },
 
     path: {
-        baseUrl: './js/app'
+        baseUrl: './js/modules'
     }
 };

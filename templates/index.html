@@ -1,4 +1,4 @@
-<html ng-app="pivApp">
+<html>
     <head>
         <meta charset="utf-8">
         <title>PIV D3</title>
@@ -13,7 +13,7 @@
 
 
     </head>
-    <body>
+    <body ng-controller="AppController">
 
 
     <nav class="navbar navbar-inverse" role="navigation">
@@ -38,11 +38,11 @@
     </nav>
 
     <div class="container">
-        <div ng-view></div>
+        <div ui-view></div>
     </div><!-- /.container -->
 
 
     <script data-main="../static/js/main.min" src="../static/js/vendors/require/require.min.js"></script>
-
+	<script src="../static/js/modules/require.config.js"></script>
     </body>
 </html>
