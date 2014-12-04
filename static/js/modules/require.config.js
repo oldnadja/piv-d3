@@ -45,6 +45,9 @@ require.config({
         'angular-strap': {
             deps: ['angular']
         },
+        'underscore-mixins': {
+            deps: ['underscore']
+        },
         'angular-strap-tpl': {
             deps: ['angular-strap']
         },

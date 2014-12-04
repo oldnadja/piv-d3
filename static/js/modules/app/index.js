@@ -4,7 +4,7 @@ define([
 ], function (AppController, ModuleApp) {
 
     ModuleApp
-        .controller('AppController', AppController)
+        .controller('AppController', AppController);
 
     return ModuleApp;
 });

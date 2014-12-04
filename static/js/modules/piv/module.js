@@ -8,15 +8,10 @@ define([
     var ModulePiv = angular.module('piv', [    
 	        'ui.router'
 	]);
-	
-	
 
-	
-    ModulePiv.config([
+	ModulePiv.config([
         '$stateProvider',
-        function ($stateProvider) {	
-console.log('lkjkleryhjklejhklesjr');
-console.log($stateProvider);
+        function ($stateProvider) {
             $stateProvider
                 .state('index', {
                     controller: 'PivController',

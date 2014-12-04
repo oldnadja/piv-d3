@@ -1,13 +1,15 @@
 define([
     'piv/module',
     'piv/services/VectorService',
-    'piv/controllers/pivController',
-    'piv/controllers/graphController'
-], function (ModulePiv, VectorService, pivController, graphController) {
+    'piv/controllers/PivController',
+    'piv/controllers/GraphController',
+    'piv/directives/FileReadDirective'
+], function (ModulePiv, VectorService, PivController, GraphController, FileReadDirective) {
 
     ModulePiv
-        .factory('VectorService', VectorService)
-        .controller('pivController', pivController)
-        .controller('graphController', graphController);
+        .service('VectorService', VectorService)
+        .controller('PivController', PivController)
+        .controller('GraphController', GraphController)
+        .directive('fileread', FileReadDirective);
 
 });

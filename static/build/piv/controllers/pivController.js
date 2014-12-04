@@ -3,15 +3,16 @@ define([
 ], function (_) {
     'use strict';
 
-    var PivController = function($scope, $http, Vector) {
-	
-	console.log(';ewgkjlerjykljeklryjklrjeyklrejklrjewykl');
-		Vector.$promise.then(function(result){
+    var PivController = function($scope, $http) {
+
+
+        /*VectorService.$promise.then(function(result){
 			console.log(result);
-			var vectors = Vector.vectors;
+			var vectors = VectorService.getVectors();
+
 			var graph = new Graph(vectors);
 			graph.initialize();
-		});
+		});*/
         
         $scope.formUrl = 'upload';
         $scope.formData = {};
@@ -41,7 +42,7 @@ define([
     }
 	
 	
-    PivController.$inject = ['$scope', '$http', 'VectorService'];
+    PivController.$inject = ['$scope', '$http'];
 
     return PivController;
 });

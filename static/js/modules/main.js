@@ -6,11 +6,7 @@ define( 'main', [
 
 
     function (angular, configAngular) {
-    return function(){
-
-		'use strict';
-
-    console.log('ldaskfjkjashgjehkjhkjrhew');
-		angular.bootstrap(document, ['app']);
-    };
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['app']);
+        });
 });

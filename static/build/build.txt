@@ -15,8 +15,9 @@ app/module.js
 app/index.js
 piv/module.js
 piv/services/VectorService.js
-piv/controllers/pivController.js
-piv/controllers/graphController.js
+piv/controllers/PivController.js
+piv/controllers/GraphController.js
+piv/directives/FileReadDirective.js
 piv/index.js
 config/config-modules.js
 main.js

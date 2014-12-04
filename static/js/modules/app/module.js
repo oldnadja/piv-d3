@@ -13,9 +13,8 @@ define([
         '$state',
         '$stateParams',
         function ($rootScope, $state, $stateParams) {
+
             $rootScope.$state = $state;
-			console.log('$state');
-			console.log( $state);
             $rootScope.$stateParams = $stateParams;
 
         }
