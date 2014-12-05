@@ -18,44 +18,57 @@ def nocache(view):
 	
 app = Flask(__name__)
 
-vectors = [
-    {
-        "source": "1.0",
-        "target": "2.0",
-        "type": "arrow",
-        "coords": {
-            "source": [0,12],
-            "target": [40,30]
+vectors = {
+    "points": [
+        {
+            "id": "id1",
+            "type": "arrow",
+            "coords": [120, 120]
+        },
+        {
+            "id": "id2",
+            "type": "arrow",
+            "coords": [30, 30]
+        },
+        {
+            "id": "id3",
+            "type": "arrow",
+            "coords": [40,60]
+        },
+        {
+            "id": "id4",
+            "type": "arrow",
+            "coords": [80, 80]
+        },
+        {
+            "id": "id5",
+            "type": "arrow",
+            "coords": [300, 300]
+        },
+        {
+            "id": "id6",
+            "type": "arrow",
+            "coords": [320, 320]
         }
-    },
-    {
-        "source": "2.0",
-        "target": "20.0",
-        "type": "arrow",
-        "coords": {
-            "source": [0,0],
-            "target": [44,20]
-        }
-    },
-    {
-        "source": "3.0",
-        "target": "10.0",
-        "type": "arrow",
-        "coords": {
-            "source": [20,20],
-            "target": [43,3]
-        }
-    },
-    {
-        "source": "7.0",
-        "target": "8.0",
-        "type": "arrow",
-        "coords": {
-            "source": [0,10],
-            "target": [43,34]
-        }
-    }
-]
+    ],
+    "links": [
+       {
+                "source": "id1",
+                "target": "id2",
+                "strength": 1
+       },
+       {
+                "source": "id3",
+                "target": "id4",
+                "strength": 1
+       },
+       {
+                "source": "id5",
+                "target": "id6",
+                "strength": 1
+       }
+    ]
+}
 
 @app.route("/")
 @nocache
