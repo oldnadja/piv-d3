@@ -10,6 +10,8 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
 DATABASE_CONNECT_OPTIONS = {}
 
+DBLOG_CATCH_404_ERRORS = True
+
 # Application threads. A common general assumption is
 # using 2 per available processor cores - to handle
 # incoming requests using one and performing background
@@ -22,6 +24,8 @@ CSRF_ENABLED     = True
 # Use a secure, unique and absolutely secret key for
 # signing the data. 
 CSRF_SESSION_KEY = "secret"
+
+UPLOAD_FOLDER = 'uploads/'
 
 # Secret key for signing cookies
 SECRET_KEY = "secret"

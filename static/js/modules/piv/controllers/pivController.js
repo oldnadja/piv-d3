@@ -18,12 +18,12 @@ define([
         $scope.formData = {};
 
         $scope.processForm = function(){
-            console.log($scope.formData);
+
             $http({
                 method  : 'POST',
                 url     : $scope.formUrl,
                 data    : $.param($scope.formData),  // pass in data as strings
-                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+                headers : { 'Content-Type': 'multipart/form-data' }  // set the headers so angular passing info as form data (not request payload)
             })
                 .success(function(data) {
                     console.log(data);
